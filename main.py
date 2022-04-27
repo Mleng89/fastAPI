@@ -34,11 +34,11 @@ def get_posts():
     return {"posts": my_posts}
 
 
-@app.post("/posts")
+@app.post("/posts", status_code=status.HTTP_201_CREATED)
 def create_post(post: Post):
     post_dict = post.dict()
     post_dict["id"] = randrange(1, 1000000)
-    print("Do I have a rating?", post.rating)
+    # print("Do I have a rating?", post.rating)
     my_posts.append(post_dict)
     return {"new_post": post}
 
